@@ -53,7 +53,7 @@ export default function HeroScroll() {
       for (let i = 2; i <= FRAME_COUNT; i++) {
         const img = new Image();
         const paddedIndex = i.toString().padStart(3, "0");
-        img.src = `/images/hero_section/ezgif-frame-${paddedIndex}.png`;
+        img.src = `/images/hero_section/ezgif-frame-${paddedIndex}.webp`;
         img.onload = () => {
           loadedImages[i - 1] = img;
           setImages([...loadedImages]);
@@ -63,7 +63,7 @@ export default function HeroScroll() {
 
     // Load Frame 1 first to display immediately
     const firstImg = new Image();
-    firstImg.src = `/images/hero_section/ezgif-frame-001.png`;
+    firstImg.src = `/images/hero_section/ezgif-frame-001.webp`;
     firstImg.onload = () => {
       loadedImages[0] = firstImg;
       setImages([...loadedImages]);
