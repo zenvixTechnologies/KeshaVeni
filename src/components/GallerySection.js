@@ -5,10 +5,10 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 
 const galleryImages = [
-  { src: "/images/shiny_hair.png", alt: "Healthy, shiny Indian hair", colSpan: "md:col-span-2", rowSpan: "md:row-span-2" },
-  { src: "/images/lifestyle_oil.png", alt: "Woman massaging hair oil", colSpan: "md:col-span-1", rowSpan: "md:row-span-1" },
-  { src: "/images/amla_ingredient.png", alt: "Fresh Amla", colSpan: "md:col-span-1", rowSpan: "md:row-span-1" },
-  { src: "/images/ayurvedic_herbs.png", alt: "Ayurvedic Herbs", colSpan: "md:col-span-2", rowSpan: "md:row-span-1" },
+  { src: "/images/shiny_hair.webp", alt: "Healthy, shiny Indian hair", colSpan: "md:col-span-2", rowSpan: "md:row-span-2" },
+  { src: "/images/lifestyle_oil.webp", alt: "Woman massaging hair oil", colSpan: "md:col-span-1", rowSpan: "md:row-span-1" },
+  { src: "/images/amla_ingredient.webp", alt: "Fresh Amla", colSpan: "md:col-span-1", rowSpan: "md:row-span-1" },
+  { src: "/images/ayurvedic_herbs.webp", alt: "Ayurvedic Herbs", colSpan: "md:col-span-2", rowSpan: "md:row-span-1" },
 ];
 
 export default function GallerySection() {
@@ -41,6 +41,7 @@ export default function GallerySection() {
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
+                loading="lazy"
               />
             </motion.div>
           ))}

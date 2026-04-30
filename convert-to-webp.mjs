@@ -3,8 +3,8 @@ import path from 'path';
 import sharp from 'sharp';
 
 async function convert() {
-  const dir = 'public/images/hero_section';
-  const files = fs.readdirSync(dir).filter(f => f.endsWith('.png'));
+  const dir = 'public/images';
+  const files = fs.readdirSync(dir).filter(f => f.endsWith('.png') && fs.lstatSync(path.join(dir, f)).isFile());
 
   console.log(`Found ${files.length} PNG files. Converting to WebP...`);
   
@@ -17,9 +17,7 @@ async function convert() {
       await sharp(input).webp({ quality: 80 }).toFile(output);
       fs.unlinkSync(input); // Delete original PNG after successful conversion
       converted++;
-      if (converted % 20 === 0) {
-        console.log(`Converted ${converted}/${files.length}`);
-      }
+      console.log(`Converted ${file}`);
     } catch (e) {
       console.error(`Error converting ${file}:`, e);
     }
