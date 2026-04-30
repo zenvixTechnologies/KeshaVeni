@@ -12,11 +12,24 @@ export default function HeroScroll() {
 
   // Render specific frame
   const renderFrame = React.useCallback((index, imageArray = images) => {
-    if (!canvasRef.current || !imageArray[index - 1]) return;
+    if (!canvasRef.current) return;
+    
+    // Find the closest loaded frame if the exact one isn't loaded yet
+    let imgToDraw = imageArray[index - 1];
+    if (!imgToDraw) {
+      for (let i = index - 1; i >= 0; i--) {
+        if (imageArray[i]) {
+          imgToDraw = imageArray[i];
+          break;
+        }
+      }
+    }
+    
+    if (!imgToDraw) return;
     
     const canvas = canvasRef.current;
     const context = canvas.getContext("2d");
-    const img = imageArray[index - 1];
+    const img = imgToDraw;
 
     // Ensure canvas dimensions match window size
     canvas.width = window.innerWidth;
@@ -31,27 +44,38 @@ export default function HeroScroll() {
     context.drawImage(img, x, y, img.width * scale, img.height * scale);
   }, [images]);
 
-  // Preload images
+  // Preload images progressively
   useEffect(() => {
-    const loadedImages = [];
-    let loadedCount = 0;
+    const loadedImages = new Array(FRAME_COUNT).fill(null);
+    
+    // Function to load the rest of the images
+    const loadRemainingFrames = () => {
+      for (let i = 2; i <= FRAME_COUNT; i++) {
+        const img = new Image();
+        const paddedIndex = i.toString().padStart(3, "0");
+        img.src = `/images/hero_section/ezgif-frame-${paddedIndex}.png`;
+        img.onload = () => {
+          loadedImages[i - 1] = img;
+          setImages([...loadedImages]);
+        };
+      }
+    };
 
-    for (let i = 1; i <= FRAME_COUNT; i++) {
-      const img = new Image();
-      const paddedIndex = i.toString().padStart(3, "0");
-      img.src = `/images/hero_section/ezgif-frame-${paddedIndex}.png`;
-      img.onload = () => {
-        loadedCount++;
-        if (loadedCount === FRAME_COUNT) {
-          // All images loaded, initial draw
-          if (canvasRef.current) {
-            renderFrame(1, loadedImages);
-          }
-        }
-      };
-      loadedImages.push(img);
-    }
-    setImages(loadedImages);
+    // Load Frame 1 first to display immediately
+    const firstImg = new Image();
+    firstImg.src = `/images/hero_section/ezgif-frame-001.png`;
+    firstImg.onload = () => {
+      loadedImages[0] = firstImg;
+      setImages([...loadedImages]);
+      
+      if (canvasRef.current) {
+        // We pass the array directly since state might not have updated yet
+        renderFrame(1, loadedImages);
+      }
+      
+      // Once first frame is painted, silently load the rest
+      loadRemainingFrames();
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
