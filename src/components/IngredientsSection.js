@@ -9,14 +9,14 @@ const ingredients = [
     id: "amla",
     name: "Amla (Indian Gooseberry)",
     description: "Rich in Vitamin C and antioxidants, Amla strengthens hair follicles and prevents premature greying. It acts as a natural conditioner, leaving your hair smooth and shiny.",
-    image: "/images/amla_ingredient.png",
+    image: "/images/amla_ingredient.webp",
     color: "from-green-500/20 to-emerald-900/40"
   },
   {
     id: "herbs",
     name: "Bhringraj & Brahmi",
     description: "Known as the 'King of Herbs' for hair, Bhringraj promotes profound hair growth. Brahmi soothes the scalp, relieving stress and promoting a deep, restful sleep.",
-    image: "/images/ayurvedic_herbs.png",
+    image: "/images/ayurvedic_herbs.webp",
     color: "from-amber-500/20 to-[#0f2e1c]/40"
   }
 ];
@@ -95,6 +95,7 @@ export default function IngredientsSection() {
                       sizes="(max-width: 1024px) 100vw, 66vw"
                       className="object-cover"
                       priority={false}
+                      loading="lazy"
                     />
                   </motion.div>
                 )
