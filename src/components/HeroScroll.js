@@ -130,7 +130,7 @@ export default function HeroScroll() {
         />
         
         {/* Overlays */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none text-white text-center p-6">
+        <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none text-white text-center p-4 sm:p-6 overflow-hidden">
           <FeatureText 
             progress={scrollProgress} 
             start={0.02} 
@@ -138,7 +138,7 @@ export default function HeroScroll() {
             title="Kesha Veni" 
             desc="Nourish Your Roots, Naturally 🌿" 
             titleClass="font-serif bg-clip-text text-transparent bg-gradient-to-r from-[#F1CA41] via-[#fff5d1] to-[#d4af37] drop-shadow-[0_10px_40px_rgba(241,202,65,0.6)] filter"
-            descClass="text-2xl md:text-3xl lg:text-4xl font-light text-white tracking-widest mt-6 drop-shadow-[0_4px_20px_rgba(0,0,0,0.9)] uppercase"
+            descClass="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-light text-white tracking-widest mt-4 md:mt-6 drop-shadow-[0_4px_20px_rgba(0,0,0,0.9)] uppercase"
           />
           <FeatureText 
             progress={scrollProgress} 
@@ -147,7 +147,7 @@ export default function HeroScroll() {
             title="100% Ayurvedic Formula" 
             desc="Authentic & Pure" 
             titleClass="text-white drop-shadow-[0_10px_30px_rgba(0,0,0,0.8)] font-black"
-            descClass="text-3xl md:text-4xl lg:text-5xl font-serif text-[#F1CA41] italic mt-4 drop-shadow-[0_4px_20px_rgba(0,0,0,0.9)]"
+            descClass="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-serif text-[#F1CA41] italic mt-3 md:mt-4 drop-shadow-[0_4px_20px_rgba(0,0,0,0.9)]"
           />
           <FeatureText 
             progress={scrollProgress} 
@@ -164,7 +164,7 @@ export default function HeroScroll() {
             title="Reduces Hair Fall" 
             desc="Stronger roots, healthier growth" 
             titleClass="text-white drop-shadow-[0_10px_30px_rgba(0,0,0,0.8)] font-black"
-            descClass="text-2xl md:text-3xl font-light text-[#7acb88] tracking-widest mt-6 drop-shadow-[0_4px_20px_rgba(0,0,0,0.9)] uppercase"
+            descClass="text-lg sm:text-2xl md:text-3xl font-light text-[#7acb88] tracking-widest mt-4 md:mt-6 drop-shadow-[0_4px_20px_rgba(0,0,0,0.9)] uppercase"
           />
           <FeatureText 
             progress={scrollProgress} 
@@ -181,7 +181,7 @@ export default function HeroScroll() {
             title="Improves Sleep & Scalp Health" 
             desc="Relax and Rejuvenate" 
             titleClass="text-white drop-shadow-[0_10px_30px_rgba(0,0,0,0.8)] font-black"
-            descClass="text-3xl md:text-4xl lg:text-5xl font-serif text-[#F1CA41] italic mt-4 drop-shadow-[0_4px_20px_rgba(0,0,0,0.9)]"
+            descClass="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-serif text-[#F1CA41] italic mt-3 md:mt-4 drop-shadow-[0_4px_20px_rgba(0,0,0,0.9)]"
           />
         </div>
       </div>
@@ -189,7 +189,7 @@ export default function HeroScroll() {
   );
 }
 
-function FeatureText({ progress, start, end, title, desc, titleClass = "text-white", descClass = "text-2xl md:text-3xl lg:text-4xl font-semibold text-zinc-100 drop-shadow-[0_0_15px_rgba(255,255,255,0.6)]" }) {
+function FeatureText({ progress, start, end, title, desc, titleClass = "text-white", descClass = "text-lg sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-zinc-100 drop-shadow-[0_0_15px_rgba(255,255,255,0.6)]" }) {
   // Calculate opacity based on progress
   let opacity = 0;
   let translateY = 40;
@@ -219,14 +219,14 @@ function FeatureText({ progress, start, end, title, desc, titleClass = "text-whi
 
   return (
     <div 
-      className="absolute flex flex-col items-center justify-center max-w-4xl transition-transform duration-75 will-change-transform"
+      className="absolute flex flex-col items-center justify-center w-full px-4 md:px-0 max-w-4xl transition-transform duration-75 will-change-transform"
       style={{ 
         opacity, 
         transform: `translateY(${translateY}px) scale(${scale})`,
         visibility: opacity > 0 ? "visible" : "hidden"
       }}
     >
-      <h2 className={`text-5xl md:text-7xl lg:text-8xl font-black tracking-tight mb-6 ${titleClass}`}>
+      <h2 className={`text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-black tracking-tight mb-3 sm:mb-4 md:mb-6 leading-tight ${titleClass}`}>
         {title}
       </h2>
       {desc && (
